@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\v1;
 
-use App\Models\Header;
-use App\Http\Requests\StoreHeaderRequest;
-use App\Http\Requests\UpdateHeaderRequest;
+use App\Models\Quote;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreQuoteRequest;
+use App\Http\Requests\UpdateQuoteRequest;
 
-class HeaderController extends Controller
+class QuoteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +20,7 @@ class HeaderController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreHeaderRequest $request)
+    public function store(StoreQuoteRequest $request)
     {
         //
     }
@@ -27,7 +28,7 @@ class HeaderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Header $header)
+    public function show(Quote $quote)
     {
         //
     }
@@ -35,7 +36,7 @@ class HeaderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateHeaderRequest $request, Header $header)
+    public function update(UpdateQuoteRequest $request, Quote $quote)
     {
         //
     }
@@ -43,7 +44,7 @@ class HeaderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Header $header)
+    public function destroy(Quote $quote)
     {
         //
     }

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\v1;
 
 use App\Models\SliderElement;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSliderElementRequest;
 use App\Http\Requests\UpdateSliderElementRequest;
 

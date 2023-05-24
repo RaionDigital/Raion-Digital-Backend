@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\v1;
 
 use App\Models\ContactSubmission;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreContactSubmissionRequest;
-use App\Http\Requests\UpdateContactSubmissionRequest;
+
 
 class ContactSubmissionController extends Controller
 {
@@ -32,13 +33,7 @@ class ContactSubmissionController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateContactSubmissionRequest $request, ContactSubmission $contactSubmission)
-    {
-        //
-    }
+ 
 
     /**
      * Remove the specified resource from storage.

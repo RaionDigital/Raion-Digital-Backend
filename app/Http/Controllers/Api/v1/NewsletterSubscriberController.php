@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\v1;
 
+use App\Http\Controllers\Controller;
 use App\Models\NewsletterSubscriber;
 use App\Http\Requests\StoreNewsletterSubscriberRequest;
-use App\Http\Requests\UpdateNewsletterSubscriberRequest;
 
 class NewsletterSubscriberController extends Controller
 {
@@ -32,13 +32,7 @@ class NewsletterSubscriberController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateNewsletterSubscriberRequest $request, NewsletterSubscriber $newsletterSubscriber)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.

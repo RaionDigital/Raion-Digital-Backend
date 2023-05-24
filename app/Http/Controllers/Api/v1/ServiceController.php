@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\v1;
 
-use App\Models\StaffMember;
-use App\Http\Requests\StoreStaffMemberRequest;
-use App\Http\Requests\UpdateStaffMemberRequest;
+use App\Models\Service;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreServiceRequest;
+use App\Http\Requests\UpdateServiceRequest;
 
-class StaffMemberController extends Controller
+class ServiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +20,7 @@ class StaffMemberController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreStaffMemberRequest $request)
+    public function store(StoreServiceRequest $request)
     {
         //
     }
@@ -27,7 +28,7 @@ class StaffMemberController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(StaffMember $staffMember)
+    public function show(Service $service)
     {
         //
     }
@@ -35,7 +36,7 @@ class StaffMemberController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateStaffMemberRequest $request, StaffMember $staffMember)
+    public function update(UpdateServiceRequest $request, Service $service)
     {
         //
     }
@@ -43,7 +44,7 @@ class StaffMemberController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(StaffMember $staffMember)
+    public function destroy(Service $service)
     {
         //
     }
