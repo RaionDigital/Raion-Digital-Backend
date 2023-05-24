@@ -22,7 +22,10 @@ class StoreQuoteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:100',
+            'email' => 'required|email|max:50',
+            'phone_number' => 'required|string|max:20',
+            'service_id' => 'required|integer',
         ];
     }
 }

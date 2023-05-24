@@ -22,7 +22,9 @@ class UpdateContactUsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'main_title' => 'required|string|max:100',
+            'subtitle' => 'required|string|max:100',
+            'description' => 'required|string|max:255'
         ];
     }
 }

@@ -22,7 +22,10 @@ class StoreContactSubmissionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:100',
+            'email' => 'required|email',
+            'subject' => 'required|string|max:100',
+            'message' => 'required|string|max:1000'
         ];
     }
 }

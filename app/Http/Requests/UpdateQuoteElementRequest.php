@@ -22,7 +22,10 @@ class UpdateQuoteElementRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|string|max:50',
+            'small_description1' => 'required|string|max:255',
+            'small_description2' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:20',
         ];
     }
 }

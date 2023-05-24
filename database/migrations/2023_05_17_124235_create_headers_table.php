@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('phone_number')->default('+961 76 166 888');
             $table->string('email')->default('info@raiondigital.com');
             $table->string('facebook')->default('https://facebook.com');
-            $table->string('instagram')->default('http://instagram.com');
+            $table->string('instagram')->default('https://instagram.com');
             $table->string('linkedin')->default('https://www.linkedin.com');
             $table->timestamps();
         });

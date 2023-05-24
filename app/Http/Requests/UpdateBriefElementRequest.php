@@ -22,7 +22,9 @@ class UpdateBriefElementRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|string|max:50',
+            'icon' => 'image|mimes:png',
+            'description' => 'required|string|max:100'
         ];
     }
 }

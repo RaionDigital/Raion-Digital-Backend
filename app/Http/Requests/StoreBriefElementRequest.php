@@ -22,7 +22,9 @@ class StoreBriefElementRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|string|max:50',
+            'icon' => 'required|image|mimes:png',
+            'description' => 'required|string|max:100'
         ];
     }
 }

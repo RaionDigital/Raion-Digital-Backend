@@ -22,7 +22,11 @@ class UpdateProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'logo' => 'image|mimes:jpg,jpeg,png',
+            'description' => 'required|string|max:255',
+            'type' => 'required|string|max:50',
+            'name' => 'required|string|max:50',
+            'link' => 'url|max:100'
         ];
     }
 }

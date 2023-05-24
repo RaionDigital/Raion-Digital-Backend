@@ -16,7 +16,8 @@ class Quote extends Model
         'name',
         'email',
         'phone_number',
-        'service_id'
+        'service_id',
+        'status',
     ];
 
     public function services (){

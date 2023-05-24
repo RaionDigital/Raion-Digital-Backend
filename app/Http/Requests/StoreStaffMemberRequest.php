@@ -22,7 +22,9 @@ class StoreStaffMemberRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|string|max:50',
+            'position' => 'required|string|max:50',
+            'graphic' => 'required|image|mimes:jpg,jpeg,png'
         ];
     }
 }

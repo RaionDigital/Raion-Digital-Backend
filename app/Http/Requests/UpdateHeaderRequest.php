@@ -22,7 +22,12 @@ class UpdateHeaderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'address' => 'required|string|max:100',
+            'phone_number' => 'required|string|max:20',
+            'email' => 'required|email|max:50',
+            'facebook' => 'required|url|max:100',
+            'instagram' => 'required|url|max:100',
+            'linkedin' => 'required|url|max:100',
         ];
     }
 }
