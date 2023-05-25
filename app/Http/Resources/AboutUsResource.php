@@ -28,7 +28,6 @@ class AboutUsResource extends JsonResource
             'video_title' => $this->video_title,
             'video_url' => $this->video_url,
             'video' => $this->video,
-
         ];
     }
 }

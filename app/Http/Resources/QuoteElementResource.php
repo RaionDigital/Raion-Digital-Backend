@@ -15,6 +15,12 @@ class QuoteElementResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'small_description1' => $this->small_description1,
+            'small_description2' => $this->small_description2,
+            'phone_number' => $this->phone_number,
+        ];
     }
 }

@@ -15,6 +15,14 @@ class HeaderResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'address' => $this->address,
+            'phone_number' => $this->phone_number,
+            'email' => $this->email,
+            'facebook' => $this->facebook,
+            'instagram' => $this->instagram,
+            'linkedin' => $this->linkedin,
+        ];
     }
 }
