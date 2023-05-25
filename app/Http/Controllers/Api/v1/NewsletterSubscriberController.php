@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Models\NewsletterSubscriber;
 use App\Http\Requests\StoreNewsletterSubscriberRequest;
+use App\Http\Resources\NewsletterSubscriberResource;
+use Exception;
 
 class NewsletterSubscriberController extends Controller
 {
@@ -13,7 +15,15 @@ class NewsletterSubscriberController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            return NewsletterSubscriberResource::collection(
+                NewsletterSubscriber::query()
+                    ->orderBy('id', 'desc')
+                    ->get(),
+            );
+        } catch (Exception $e) {
+            abort(500, 'Something went wrong! We could not get the Header Section data');
+        }
     }
 
     /**
@@ -21,7 +31,15 @@ class NewsletterSubscriberController extends Controller
      */
     public function store(StoreNewsletterSubscriberRequest $request)
     {
-        //
+        try {
+            $data = $request->validated();
+
+            $newsletterSubscriber = NewsletterSubscriber::create($data);
+
+            return response(new NewsletterSubscriberResource($newsletterSubscriber), 201);
+        } catch (Exception $e) {
+            abort(500, 'Could not subscribe you to our newsletter, please try again');
+        }
     }
 
     /**
@@ -29,7 +47,7 @@ class NewsletterSubscriberController extends Controller
      */
     public function show(NewsletterSubscriber $newsletterSubscriber)
     {
-        //
+        return new NewsletterSubscriberResource($newsletterSubscriber);
     }
 
 
@@ -39,6 +57,12 @@ class NewsletterSubscriberController extends Controller
      */
     public function destroy(NewsletterSubscriber $newsletterSubscriber)
     {
-        //
+        try {
+            $newsletterSubscriber->delete();
+
+            return response('Newsletter Subscriber Deleted Successfully', 204);
+        } catch (Exception $e) {
+            abort(500, 'Could not delete Newsletter Subscriber');
+        }
     }
 }

@@ -6,6 +6,8 @@ use App\Models\Quote;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreQuoteRequest;
 use App\Http\Requests\UpdateQuoteRequest;
+use App\Http\Resources\QuoteResource;
+use Exception;
 
 class QuoteController extends Controller
 {
@@ -14,7 +16,15 @@ class QuoteController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            return QuoteResource::collection(
+                Quote::query()
+                    ->orderBy('id', 'desc')
+                    ->get(),
+            );
+        } catch (Exception $e) {
+            abort(500, 'Something went wrong! We could not get the Quotes data');
+        }
     }
 
     /**
@@ -22,7 +32,15 @@ class QuoteController extends Controller
      */
     public function store(StoreQuoteRequest $request)
     {
-        //
+        try {
+            $data = $request->validated();
+
+            $project = Quote::create($data);
+
+            return response(new QuoteResource($project), 201);
+        } catch (Exception $e) {
+            abort(500, 'Could not send your Quote request, please try again.');
+        }
     }
 
     /**
@@ -30,7 +48,7 @@ class QuoteController extends Controller
      */
     public function show(Quote $quote)
     {
-        //
+        return new QuoteResource($quote);
     }
 
     /**
@@ -38,7 +56,15 @@ class QuoteController extends Controller
      */
     public function update(UpdateQuoteRequest $request, Quote $quote)
     {
-        //
+        try {
+            $data = $request->validated();
+
+            $quote->update($data);
+
+            return new QuoteResource($quote);
+        } catch (Exception $e) {
+            abort(500, 'Could not update Quote data');
+        }
     }
 
     /**
@@ -46,6 +72,13 @@ class QuoteController extends Controller
      */
     public function destroy(Quote $quote)
     {
-        //
+        try {
+
+            $quote->delete();
+
+            return response('Quote Deleted Successfully', 204);
+        } catch (Exception $e) {
+            abort(500, 'Could not delete Quote');
+        }
     }
 }

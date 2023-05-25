@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api\v1;
 use App\Models\Header;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateHeaderRequest;
+use App\Http\Resources\HeaderResource;
+use Exception;
 
 class HeaderController extends Controller
 {
@@ -13,17 +15,23 @@ class HeaderController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            return HeaderResource::collection(
+                Header::query()
+                    ->orderBy('id', 'desc')
+                    ->get(),
+            );
+        } catch (Exception $e) {
+            abort(500, 'Something went wrong! We could not get the Header Section data');
+        }
     }
-
-
 
     /**
      * Display the specified resource.
      */
     public function show(Header $header)
     {
-        //
+        return new HeaderResource($header);
     }
 
     /**
@@ -31,7 +39,15 @@ class HeaderController extends Controller
      */
     public function update(UpdateHeaderRequest $request, Header $header)
     {
-        //
+        try {
+            $data = $request->validated();
+
+            $header->update($data);
+
+            return new HeaderResource($header);
+        } catch (Exception $e) {
+            abort(500, 'Could not update the Header Section data');
+        }
     }
 
     /**
@@ -39,6 +55,12 @@ class HeaderController extends Controller
      */
     public function destroy(Header $header)
     {
-        //
+        try {
+            $header->delete();
+
+            return response('Header Section Data  Deleted Successfully', 204);
+        } catch (Exception $e) {
+            abort(500, 'Could not delete Header Section data');
+        }
     }
 }
