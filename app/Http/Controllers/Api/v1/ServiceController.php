@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use Exception;
 use App\Models\Service;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use App\Http\Resources\ServiceResource;
 use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
 
@@ -14,7 +17,15 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            return ServiceResource::collection(
+                Service::query()
+                    ->orderBy('id', 'desc')
+                    ->get(),
+            );
+        } catch (Exception $e) {
+            abort(500, 'Something went wrong! We could not get the Services Section data');
+        }
     }
 
     /**
@@ -22,7 +33,17 @@ class ServiceController extends Controller
      */
     public function store(StoreServiceRequest $request)
     {
-        //
+        try {
+            $data = $request->validated();
+            $data['icon'] = $request->file('icon')->store('uploaded icons', 'public');
+
+            $service = Service::create($data);
+
+            return response(new ServiceResource($service), 201);
+        } catch (Exception $e) {
+            abort(500, 'Could not save Services Section Element');
+        }
+
     }
 
     /**
@@ -30,7 +51,7 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        //
+         return new ServiceResource($service);
     }
 
     /**
@@ -38,7 +59,19 @@ class ServiceController extends Controller
      */
     public function update(UpdateServiceRequest $request, Service $service)
     {
-        //
+        try {
+            $data = $request->validated();
+            if ($request->has('icon')) {
+                File::delete($service->icon);
+                $data['icon'] = $request->file('icon')->store('uploaded icons', 'public');
+            }
+
+            $service->update($data);
+
+            return new ServiceResource($service);
+        } catch (Exception $e) {
+            abort(500, 'Could not update Services Section Element data');
+        }
     }
 
     /**
@@ -46,6 +79,13 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
+        try {
+            File::delete($service->image);
+            $service->delete();
+
+            return response('Services Section Element Deleted Successfully', 204);
+        } catch (Exception $e) {
+            abort(500, 'Could not delete Services Section Element data');
+        }
     }
 }

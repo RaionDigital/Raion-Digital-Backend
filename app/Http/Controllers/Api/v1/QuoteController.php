@@ -35,9 +35,9 @@ class QuoteController extends Controller
         try {
             $data = $request->validated();
 
-            $project = Quote::create($data);
+            $quote = Quote::create($data);
 
-            return response(new QuoteResource($project), 201);
+            return response(new QuoteResource($quote), 201);
         } catch (Exception $e) {
             abort(500, 'Could not send your Quote request, please try again.');
         }
