@@ -18,16 +18,16 @@ class AboutUsResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'main_title' =>$this->main_title,
-            'main_description' =>$this->main_description,
+            'main_title' => $this->main_title,
+            'main_description' => $this->main_description,
             'image' => $this->image,
-            'service_icon1' => $this->service_icon1,
+            'service_icon1' => asset('storage/' . $this->service_icon1),
             'service_description1' => $this->service_description1,
-            'service_icon2' => $this->service_icon2,
+            'service_icon2' => asset('storage/' . $this->service_icon2),
             'service_description2' => $this->service_description2,
             'video_title' => $this->video_title,
             'video_url' => $this->video_url,
-            'video' => $this->video,
+            'video' => asset('storage/' . $this->video),
         ];
     }
 }

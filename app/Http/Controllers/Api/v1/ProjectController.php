@@ -35,7 +35,7 @@ class ProjectController extends Controller
     {
         try {
             $data = $request->validated();
-            $data['logo'] = $request->file('logo')->store('uploaded images', 'public');
+            $data['logo'] = $request->file('logo')->store('uploaded-images', 'public');
 
             $project = Project::create($data);
 
@@ -62,7 +62,7 @@ class ProjectController extends Controller
             $data = $request->validated();
             if ($request->has('logo')) {
                 File::delete($project->logo);
-                $data['logo'] = $request->file('logo')->store('uploaded images', 'public');
+                $data['logo'] = $request->file('logo')->store('uploaded-images', 'public');
             }
 
             $project->update($data);

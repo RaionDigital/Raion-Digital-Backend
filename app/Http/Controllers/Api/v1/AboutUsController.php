@@ -35,10 +35,10 @@ class AboutUsController extends Controller
     {
         try {
             $data = $request->validated();
-            $data['image'] = $request->file('image')->store('uploaded images', 'public');
-            $data['video'] = $request->file('video')->store('uploaded videos', 'public');
-            $data['service_icon1'] = $request->file('service_icon1')->store('uploaded icons', 'public');
-            $data['service_icon2'] = $request->file('service_icon2')->store('uploaded icons', 'public');
+            $data['image'] = $request->file('image')->store('uploaded-images', 'public');
+            $data['video'] = $request->file('video')->store('uploaded-videos', 'public');
+            $data['service_icon1'] = $request->file('service_icon1')->store('uploaded-icons', 'public');
+            $data['service_icon2'] = $request->file('service_icon2')->store('uploaded-icons', 'public');
             $aboutUs = AboutUs::create($data);
 
             return response(new AboutUsResource($aboutUs), 201);
@@ -66,21 +66,21 @@ class AboutUsController extends Controller
                 File::delete($aboutUs->image);
 
 
-                $data['image'] = $request->file('image')->store('uploaded images', 'public');
+                $data['image'] = $request->file('image')->store('uploaded-images', 'public');
             }
             if ($request->has('video')) {
                 File::delete($aboutUs->video);
 
-                $data['video'] = $request->file('video')->store('uploaded videos', 'public');
+                $data['video'] = $request->file('video')->store('uploaded-videos', 'public');
             }
             if ($request->has('service_icon1')) {
                 File::delete($aboutUs->service_icon1);
 
-                $data['service_icon1'] = $request->file('service_icon1')->store('uploaded icons', 'public');
+                $data['service_icon1'] = $request->file('service_icon1')->store('uploaded-icons', 'public');
             }
             if ($request->has('service_icon2')) {
                 File::delete($aboutUs->service_icon2);
-                $data['service_icon2'] = $request->file('service_icon2')->store('uploaded icons', 'public');
+                $data['service_icon2'] = $request->file('service_icon2')->store('uploaded-icons', 'public');
             }
             $aboutUs->update($data);
 

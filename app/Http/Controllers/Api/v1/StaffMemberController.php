@@ -35,7 +35,7 @@ class StaffMemberController extends Controller
     {
         try {
             $data = $request->validated();
-            $data['graphic'] = $request->file('graphic')->store('uploaded images', 'public');
+            $data['graphic'] = $request->file('graphic')->store('uploaded-images', 'public');
 
             $staffMember = StaffMember::create($data);
 
@@ -62,7 +62,7 @@ class StaffMemberController extends Controller
             $data = $request->validated();
             if ($request->has('graphic')) {
                 File::delete($staffMember->graphic);
-                $data['graphic'] = $request->file('graphic')->store('uploaded images', 'public');
+                $data['graphic'] = $request->file('graphic')->store('uploaded-images', 'public');
             }
 
             $staffMember->update($data);

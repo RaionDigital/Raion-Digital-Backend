@@ -35,7 +35,7 @@ class ServiceController extends Controller
     {
         try {
             $data = $request->validated();
-            $data['icon'] = $request->file('icon')->store('uploaded icons', 'public');
+            $data['icon'] = $request->file('icon')->store('uploaded-icons', 'public');
 
             $service = Service::create($data);
 
@@ -43,7 +43,6 @@ class ServiceController extends Controller
         } catch (Exception $e) {
             abort(500, 'Could not save Services Section Element');
         }
-
     }
 
     /**
@@ -51,7 +50,7 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-         return new ServiceResource($service);
+        return new ServiceResource($service);
     }
 
     /**
@@ -63,7 +62,7 @@ class ServiceController extends Controller
             $data = $request->validated();
             if ($request->has('icon')) {
                 File::delete($service->icon);
-                $data['icon'] = $request->file('icon')->store('uploaded icons', 'public');
+                $data['icon'] = $request->file('icon')->store('uploaded-icons', 'public');
             }
 
             $service->update($data);

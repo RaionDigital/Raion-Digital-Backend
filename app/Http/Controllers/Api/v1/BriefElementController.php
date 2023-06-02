@@ -35,7 +35,7 @@ class BriefElementController extends Controller
     {
         try {
             $data = $request->validated();
-            $data['icon'] = $request->file('icon')->store('uploaded icons', 'public');
+            $data['icon'] = $request->file('icon')->store('uploaded-icons', 'public');
 
             $briefElement = BriefElement::create($data);
 
@@ -62,7 +62,7 @@ class BriefElementController extends Controller
             $data = $request->validated();
             if ($request->has('icon')) {
                 File::delete($briefElement->icon);
-                $data['icon'] = $request->file('icon')->store('uploaded icons', 'public');
+                $data['icon'] = $request->file('icon')->store('uploaded-icons', 'public');
             }
 
             $briefElement->update($data);

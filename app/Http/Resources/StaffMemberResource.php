@@ -17,9 +17,9 @@ class StaffMemberResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title'  => $this->title,
+            'title' => $this->title,
             'position' => $this->position,
-            'graphic' => $this->graphic,
+            'graphic' => asset('storage/' . $this->graphic),
         ];
     }
 }

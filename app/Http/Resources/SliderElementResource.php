@@ -20,8 +20,8 @@ class SliderElementResource extends JsonResource
             'top_title' => $this->top_title,
             'main_title' => $this->main_title,
             'button_text' => $this->button_text,
-            'button_url'  => $this->button_url,
-            'image' => $this->image
+            'button_url' => $this->button_url,
+            'image' => asset('storage/' . $this->image),
         ];
     }
 }

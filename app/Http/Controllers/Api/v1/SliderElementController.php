@@ -35,7 +35,7 @@ class SliderElementController extends Controller
     {
         try {
             $data = $request->validated();
-            $data['image'] = $request->file('image')->store('uploaded sliders', 'public');
+            $data['image'] = $request->file('image')->store('uploaded-sliders', 'public');
 
             $sliderElement = SliderElement::create($data);
 
@@ -62,7 +62,7 @@ class SliderElementController extends Controller
             $data = $request->validated();
             if ($request->has('image')) {
                 File::delete($sliderElement->image);
-                $data['image'] = $request->file('image')->store('uploaded sliders', 'public');
+                $data['image'] = $request->file('image')->store('uploaded-sliders', 'public');
             }
 
             $sliderElement->update($data);
