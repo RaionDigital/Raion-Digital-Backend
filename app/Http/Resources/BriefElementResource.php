@@ -18,7 +18,7 @@ class BriefElementResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'icon' => asset('storage/'.$this->icon),
+            'icon' => asset('storage/' . $this->icon),
             'description' => $this->description,
         ];
     }
