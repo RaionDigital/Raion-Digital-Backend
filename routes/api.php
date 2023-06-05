@@ -38,7 +38,7 @@ use App\Http\Controllers\Api\v1\NewsletterSubscriberController;
 
 Route::middleware('guest')->group(function(){
     Route::get('/about-us',                 [AboutUsController::class, 'index'])          ->name('aboutElements.index');
-    Route::get('/brief',                    [BriefElementController::class, 'index'])     ->name('briefElements.index');
+    Route::get('/features',                 [BriefElementController::class, 'index'])     ->name('briefElements.index');
     Route::post('/submit-contact',          [ContactSubmissionController::class, 'store'])      ->name('contact.store');
     Route::get('/contact-us',               [ContactUsController::class, 'index'])      ->name('contactElements.index');
     Route::get('/header',                   [HeaderController::class, 'index'])          ->name('headerElements.index');
