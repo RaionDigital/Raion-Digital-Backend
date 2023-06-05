@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('phone_number');
             $table->unsignedBigInteger('service_id');
             $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
+            $table->longText('message');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });

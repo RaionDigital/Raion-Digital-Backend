@@ -17,6 +17,7 @@ class Quote extends Model
         'email',
         'phone_number',
         'service_id',
+        'message',
         'status',
     ];
 

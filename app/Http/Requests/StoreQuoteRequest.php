@@ -25,6 +25,7 @@ class StoreQuoteRequest extends FormRequest
             'name' => 'required|string|max:100',
             'email' => 'required|email|max:50',
             'phone_number' => 'required|string|max:20',
+            'message' => 'required|string|max:1000',
             'service_id' => 'required|integer',
         ];
     }
