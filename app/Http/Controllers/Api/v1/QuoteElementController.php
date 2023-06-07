@@ -37,6 +37,8 @@ class QuoteElementController extends Controller
 
             $quoteElement = QuoteElement::create($data);
 
+            
+
             return response(new QuoteElementResource($quoteElement), 201);
         } catch (Exception $e) {
             abort(500, 'Could not save Quote Element');
