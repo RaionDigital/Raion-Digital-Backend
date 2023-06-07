@@ -19,7 +19,7 @@ class ContactUsController extends Controller
         try {
             return ContactUsResource::collection(
                 ContactUs::query()
-                    ->orderBy('id', 'desc')
+                    ->orderBy('id', 'asc')
                     ->get(),
             );
         } catch (Exception $e) {

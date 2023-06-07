@@ -20,7 +20,7 @@ class SliderElementController extends Controller
         try {
             return SliderElementResource::collection(
                 SliderElement::query()
-                    ->orderBy('id', 'desc')
+                    ->orderBy('id', 'asc')
                     ->get(),
             );
         } catch (Exception $e) {

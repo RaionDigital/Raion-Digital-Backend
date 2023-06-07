@@ -18,7 +18,7 @@ class HeaderController extends Controller
         try {
             return HeaderResource::collection(
                 Header::query()
-                    ->orderBy('id', 'desc')
+                    ->orderBy('id', 'asc')
                     ->get(),
             );
         } catch (Exception $e) {

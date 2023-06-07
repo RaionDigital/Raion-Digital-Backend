@@ -20,7 +20,7 @@ class AboutUsController extends Controller
         try {
             return AboutUsResource::collection(
                 AboutUs::query()
-                    ->orderBy('id', 'desc')
+                    ->orderBy('id', 'asc')
                     ->get(),
             );
         } catch (Exception $e) {

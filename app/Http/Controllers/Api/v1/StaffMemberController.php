@@ -20,7 +20,7 @@ class StaffMemberController extends Controller
         try {
             return StaffMemberResource::collection(
                 StaffMember::query()
-                    ->orderBy('id', 'desc')
+                    ->orderBy('id', 'asc')
                     ->get(),
             );
         } catch (Exception $e) {

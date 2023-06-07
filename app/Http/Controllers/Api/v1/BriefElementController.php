@@ -20,7 +20,7 @@ class BriefElementController extends Controller
         try {
             return BriefElementResource::collection(
                 BriefElement::query()
-                    ->orderBy('id', 'desc')
+                    ->orderBy('id', 'asc')
                     ->get(),
             );
         } catch (Exception $e) {

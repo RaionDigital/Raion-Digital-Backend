@@ -20,7 +20,7 @@ class ServiceController extends Controller
         try {
             return ServiceResource::collection(
                 Service::query()
-                    ->orderBy('id', 'desc')
+                    ->orderBy('id', 'asc')
                     ->get(),
             );
         } catch (Exception $e) {
