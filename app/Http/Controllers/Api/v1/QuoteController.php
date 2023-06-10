@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use Exception;
 use App\Models\Quote;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Resources\QuoteResource;
 use App\Http\Requests\StoreQuoteRequest;
 use App\Http\Requests\UpdateQuoteRequest;
-use App\Http\Resources\QuoteResource;
-use Exception;
 
 class QuoteController extends Controller
 {
@@ -36,6 +37,11 @@ class QuoteController extends Controller
             $data = $request->validated();
 
             $quote = Quote::create($data);
+
+            // Mail::send('email.quotation', ['quote' => $quote], function ($message) use ($quote) {
+            //     $message->to(env('MAIL_USERNAME'));
+            //     $message->subject('New Quotation from' . $quote->name);
+            // });
 
             return response(new QuoteResource($quote), 201);
         } catch (Exception $e) {
