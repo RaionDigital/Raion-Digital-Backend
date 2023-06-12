@@ -8,7 +8,6 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Mail\Mailables\Envelope;
-use Illuminate\Mail\Mailables\Address;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 
@@ -16,35 +15,40 @@ class QuotationRequested extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $quote;
     /**
      * Create a new message instance.
      */
     public function __construct(
-        public Quote $quote,
-    )
-    {}
+        Quote $quote
+    ) {
+        $this->quote = $quote;
+    }
 
     /**
      * Get the message envelope.
      */
     public function envelope(): Envelope
     {
-        $quote = Quote::latest();
-
+        $quote = Quote::latest()->first();
         return new Envelope(
-            from: new Address($quote->email, $quote->name),
-            subject: 'Quotation Request',
+            subject: 'Quotation Request from' .' '.$quote->email,
         );
     }
 
     /**
      * Get the message content definition.
      */
-    public function content(): Content
+    // public function content(): Content
+    // {
+    //     return new Content(
+    //         view: 'email.quotation',
+    //     );
+    // }
+
+    public function build()
     {
-        return new Content(
-            view: 'email.quotation',
-        );
+        return $this->from('info@raiondigital.com')->view('email.quotation');
     }
 
     /**

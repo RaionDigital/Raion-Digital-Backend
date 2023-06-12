@@ -12,11 +12,6 @@
       <td>
         <table align="center" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
           <tr>
-            <td align="center" bgcolor="#f7f7f7" style="padding: 40px 0 30px 0;">
-              <img src="https://example.com/logo.png" alt="Logo" width="200" height="50" style="display: block;">
-            </td>
-          </tr>
-          <tr>
             <td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px;">
               <table cellpadding="0" cellspacing="0" width="100%">
                 <tr>
@@ -43,7 +38,7 @@
                       </tr>
                       <tr>
                         <td width="30%" style="font-weight: bold;">Service:</td>
-                        <td>{{$quote->services->name}}</td>
+                        <td>{{$quote->services->service_title}}</td>
                       </tr>
                       <tr>
                         <td width="30%" style="font-weight: bold;">Message:</td>

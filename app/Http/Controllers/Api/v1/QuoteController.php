@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use App\Mail\QuotationRequested;
 use Exception;
 use App\Models\Quote;
 use App\Http\Controllers\Controller;
@@ -38,11 +39,11 @@ class QuoteController extends Controller
 
             $quote = Quote::create($data);
 
-            // Mail::send('email.quotation', ['quote' => $quote], function ($message) use ($quote) {
-            //     $message->to(env('MAIL_USERNAME'));
-            //     $message->subject('New Quotation from' . $quote->name);
-            // });
-
+            try {
+                Mail::mailer('smtp')->to('info@raiondigital.com')->send(new QuotationRequested($quote));
+            } catch (Exception $e) {
+                return response()->json(['error' => $e->getMessage()], 500);
+            }
             return response(new QuoteResource($quote), 201);
         } catch (Exception $e) {
             abort(500, 'Could not send your Quote request, please try again.');
