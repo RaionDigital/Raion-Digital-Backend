@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Api\v1;
 
+use Exception;
 use App\Models\ContactSubmission;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreContactSubmissionRequest;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Resources\ContactSubmissionResource;
-use Exception;
+use App\Http\Requests\StoreContactSubmissionRequest;
+use App\Mail\ContactSubmitted;
 
 class ContactSubmissionController extends Controller
 {
@@ -36,6 +38,11 @@ class ContactSubmissionController extends Controller
 
             $contactSubmission = ContactSubmission::create($data);
 
+            try {
+                Mail::mailer('smtp')->to('info@raiondigital.com')->send(new ContactSubmitted($contactSubmission));
+            } catch (Exception $e) {
+                return response()->json(['error' => $e->getMessage()], 500);
+            }
             return response(new ContactSubmissionResource($contactSubmission), 201);
         } catch (Exception $e) {
             abort(500, 'Could not send Contact Info');
